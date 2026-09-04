@@ -6,6 +6,9 @@ site_url: https://JMNebotDocent.github.io/apuntesSOR/
 theme:
   name: material
   language: es
+  font:
+    text: Merryweather Sans
+    code: RedHat Mono
   palette:
     - scheme: default
       primary: indigo

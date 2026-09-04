@@ -1,64 +1,38 @@
-# Welcome to MkDocs
+# Sistemas Operativos en Red
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+En esta página encontrarás los materiales didácticos del módulo de Sistemas Operativos en Red (SOR), el cual se imparte en el [IES Camp de Morvedre](https://portal.edu.gva.es/iescamp/va/portada-en-valenciano/ "IES Camp de Morvedre"). Este módulo se realiza en segundo curso de Grado Medio de Sistemas Microinformáticos y Redes (SMR) , cuyas enseñanzas mínimas se definen en el [Real Decreto 1691/2007](https://www.boe.es/buscar/doc.php?id=BOE-A-2008-819 "RD 1691/2007") y se concretan en el currículo de la [ORDEN de 29 de julio 2009, de la Conselleria de Educación](https://dogv.gva.es/datos/2009/09/03/pdf/2009_9808.pdf "ORDEN de 29 de julio 2009, de la Conselleria de Educación").
 
-## Commands
+Con código de asignatura 0224, SOR tiene una duración de 176 horas anuales repartidas en 6 horas por semana.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## ¿Qué voy a aprender?
+Según el artículo 5 del [Real Decreto 1691/2007](https://www.boe.es/buscar/doc.php?id=BOE-A-2008-819 "RD 1691/2007"), el aprendizaje en la FP se estructura en torno a las competencias profesionales, personales y sociales (CPPS). Estas agrupan los saberes y destrezas que capacitan al alumnado para responder a las demandas reales del entorno productivo y laboral.
 
-## Project layout
+El Módulo Profesional de SOR contribuye a las siguientes Competencias profesionales, personales y sociales:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+* **a)** Determinar la logística asociada a las operaciones de instalación, configuración y mantenimiento de sistemas microinformáticos**, interpretando la documentación técnica asociada y organizando los recursos necesarios.
+* **c)** Instalar y configurar software básico y de aplicación, asegurando su funcionamiento en condiciones de calidad y seguridad.
+* **e)** Instalar y configurar redes locales cableadas, inalámbricas o mixtas y su conexión a redes públicas, asegurando su funcionamiento en condiciones de calidad y seguridad.
+* **f)** Instalar, configurar y mantener servicios multiusuario, aplicaciones y dispositivos compartidos en un entorno de red local, atendiendo a las necesidades y requerimientos especificados.
+* **h)** Mantener sistemas microinformáticos y redes locales sustituyendo, actualizando y ajustando sus componentes, para asegurar el rendimiento del sistema en condiciones de calidad y seguridad.
+* **l)** Asesorar y asistir al cliente, canalizando a un nivel superior los supuestos que lo requieran, para encontrar soluciones adecuadas a las necesidades de éste.
+* **m)** Organizar y desarrollar el trabajo asignado manteniendo unas relaciones profesionales adecuadas en el entorno de trabajo.
+* **n)** Mantener un espíritu constante de innovación y actualización en el ámbito del sector informático.
+* **ñ)** Utilizar los medios de consulta disponibles, seleccionando el más adecuado en cada caso, para resolver en tiempo razonable supuestos no conocidos y dudas profesionales.
+* **p)** Cumplir con los objetivos de la producción, colaborando con el equipo de trabajo y actuando conforme a los principios de responsabilidad y tolerancia.
+* **q)** Adaptarse a diferentes puestos de trabajo y nuevas situaciones laborales originados por cambios tecnológicos y organizativos en los procesos productivos.
+* **r)** Resolver problemas y tomar decisiones individuales siguiendo las normas y procedimientos establecidos definidos dentro del ámbito de su competencia.
 
+## Resultados de aprendizaje
 
-# 🚀 Bienvenido a mi Documentación
+La evaluación en la Formación Profesional actual comprueba de forma continua si el alumno adquiere los Resultados de Aprendizaje (RA) de cada módulo. El [Real Decreto 659/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-16889 "Real Decreto 659/2023") y la [Ley Orgánica 3/2022](https://www.boe.es/buscar/act.php?id=BOE-A-2022-5139 "Ley Orgánica 3/2022") organizan todo el sistema educativo alrededor de estas competencias prácticas.
 
-Esta es la página de inicio de tu nuevo sitio web técnico generado con **Material for MkDocs**.
+A diferencia de los antiguos temarios que se centraban puramente en los contenidos teóricos "saber", los RA ponen el foco en el desempeño y la capacitación real del alumnado "saber hacer" y "saber aplicar".
 
----
+Es crucial que el alumnado conozca los RA de cada uno de los módulos profesionales que cursa, esto os permite saber exactamente qué competencias adquiriréis a lo largo del curso, así como qué se os evaluará.
 
-## 🛠️ Demostración de Componentes
-
-Gracias a la configuración de tu `mkdocs.yml`, puedes utilizar elementos visuales avanzados para hacer tu documentación mucho más interactiva:
-
-### 1. Cajas de Alerta (Admonitions)
-
-!!! info "Información Importante"
-    Esta es una caja de información útil para tus lectores.
-
-!!! danger "¡Cuidado!"
-    Puedes usar estas alertas para advertir sobre configuraciones peligrosas o comandos destructivos.
-
-### 2. Pestañas de Contenido (Tabs)
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-=== "Linux / macOS"
-
-    ```bash
-    mkdocs serve
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    python -m mkdocs serve
-    ```
-
----
-
-## 🧭 ¿Qué sigue ahora?
-
-Para ver cómo queda este contenido en tiempo real en tu ordenador local:
-
-1. Abre tu terminal en la raíz del proyecto.
-2. Ejecuta el comando: `mkdocs serve`
-3. Abre tu navegador e ingresa a `http://127.0.0.1:8000`
-
-Cada cambio que guardes en este archivo se actualizará automáticamente en tu pantalla.
+* **RA 1.** Instala sistemas operativos en red, describiendo sus características e interpretando la documentación técnica.
+* **RA 2.** Gestiona usuarios y grupos de sistemas operativos en red, interpretando especificaciones y aplicando herramientas del sistema.
+* **RA 3.** Realiza tareas de gestión sobre dominios, identificando necesidades y aplicando herramientas de administración de dominios.
+* **RA 4.** Gestiona los recursos compartidos del sistema, interpretando especificaciones y determinando niveles de seguridad.
+* **RA 5.** Realiza tareas de monitorización y uso del sistema operativo en red, describiendo herramientas e identificando incidencias.
+* **RA 6.** Realiza tareas de integración de sistemas operativos libres y propietarios, describiendo ventajas de compartir recursos e instalando software específico.
