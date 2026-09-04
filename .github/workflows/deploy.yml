@@ -1,0 +1,33 @@
+name: Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        # Opcional: Descomenta si usas plugins que necesitan el historial de Git (ej. fechas de revisión)
+        # with:
+        #   fetch-depth: 0
+
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+          # GitHub Actions nativamente permite cachear pip apuntando al archivo de requerimientos:
+          cache: 'pip' 
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force

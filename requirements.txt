@@ -1,0 +1,11 @@
+# Núcleo y Tema
+mkdocs>=1.6.0
+mkdocs-material>=9.5.0
+
+# Plugins muy recomendados para optimización y UX
+mkdocs-minify-plugin>=0.8.0
+#mkdocs-git-revision-date-localized-plugin>=1.2.0
+
+# Opcionales (Descomenta el que necesites quitando el '#')
+mkdocs-awesome-pages-plugin>=2.9.0
+# mkdocs-lightbox>=0.4.0
