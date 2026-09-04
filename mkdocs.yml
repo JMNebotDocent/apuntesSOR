@@ -7,7 +7,7 @@ theme:
   name: material
   language: es
   font:
-    text: Merryweather Sans
+    text: Merriweather Sans
     code: RedHat Mono
   palette:
     - scheme: default
@@ -23,12 +23,14 @@ theme:
         icon: material/brightness-4
         name: Cambiar a modo claro
   features:
-    - navigation.tabs
+    #- navigation.tabs
     - navigation.top
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.code.annotate # Muy útil para explicar líneas específicas de scripts o configs
+    - navigation.sections
+    - navigation.indexes
 
 markdown_extensions:
   - admonition               # Cajas de notas, advertencias y avisos (!!! note / !!! warning)
