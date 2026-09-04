@@ -4,7 +4,7 @@ En esta página encontrarás los materiales didácticos del módulo de Sistemas 
 
 Con código de asignatura 0224, SOR tiene una duración de 176 horas anuales repartidas en 6 horas por semana.
 
-## ¿Qué voy a aprender?
+## Competencias Profesionales, personales y sociales (CPPS)
 Según el artículo 5 del [Real Decreto 1691/2007](https://www.boe.es/buscar/doc.php?id=BOE-A-2008-819 "RD 1691/2007"), el aprendizaje en la FP se estructura en torno a las competencias profesionales, personales y sociales (CPPS). Estas agrupan los saberes y destrezas que capacitan al alumnado para responder a las demandas reales del entorno productivo y laboral.
 
 El Módulo Profesional de SOR contribuye a las siguientes Competencias profesionales, personales y sociales:
