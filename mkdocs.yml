@@ -7,8 +7,8 @@ theme:
   name: material
   language: es
   font:
-    text: Merriweather Sans
-    code: RedHat Mono
+    text: Roboto
+    code: Roboto Mono
   palette:
     - scheme: default
       primary: indigo
