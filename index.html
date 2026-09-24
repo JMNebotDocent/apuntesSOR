@@ -1,0 +1,1529 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Sistemas Operativos en Red (2º CFGM SMR) - Configuración del sistema de virtualización">
+      
+      
+        <meta name="author" content="2º SMR">
+      
+      
+      
+      
+        <link rel="next" href="test/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Apuntes SOR - Virtualización</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sistemas-operativos-en-red-configuracion-del-sistema-de-virtualizacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="." title="Apuntes SOR - Virtualización" class="md-header__button md-logo" aria-label="Apuntes SOR - Virtualización" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes SOR - Virtualización
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sistemas Operativos en Red - Configuración del sistema de virtualización
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Apuntes SOR - Virtualización" class="md-nav__button md-logo" aria-label="Apuntes SOR - Virtualización" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes SOR - Virtualización
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Operativos en Red - Configuración del sistema de virtualización
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Operativos en Red - Configuración del sistema de virtualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-contenidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de Contenidos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-la-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción a la virtualización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tipos-de-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tipos de virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tipos de virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipo-i-baremetal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo I (Baremetal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipo-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo II
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ventajas-e-inconvenientes-de-la-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ventajas e inconvenientes de la virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ventajas e inconvenientes de la virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-inconvenientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Inconvenientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VirtualBox
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. VirtualBox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-antes-de-empezar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Antes de empezar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-descarga-e-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Descarga e instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-interfaz-del-hipervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Interfaz del hipervisor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3. Interfaz del hipervisor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menu-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menú Archivo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-maquina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menú Máquina:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-el-boton-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. El botón Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ejemplo-de-creacion-de-una-maquina-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ejemplo de creación de una máquina virtual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Ejemplo de creación de una máquina virtual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-creacion-de-la-mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Creación de la MV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-instalacion-del-sistema-operativo-windows-10-en-la-mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Instalación del Sistema Operativo Windows 10 en la MV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-instalacion-de-las-guest-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Instalación de las Guest Additions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Instalación de las Guest Additions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos para la instalación:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-creacion-de-una-carpeta-compartida-host-guest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Creación de una carpeta compartida host-guest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-creacion-de-instantaneas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Creación de instantáneas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-consejos-finales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Consejos finales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-resolucion-de-problemas-tipicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Resolución de problemas típicos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-anexos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Anexos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Anexos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-resumen-de-la-configuracion-de-las-maquinas-virtuales-windows-a-crear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Resumen de la configuración de las máquinas virtuales Windows a crear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-software-de-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Software de virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2. Software de virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VMware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-server-hyper-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Server Hyper-V
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oracle-vm-virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle VM VirtualBox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallels-desktop-for-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallels Desktop for Mac
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otras soluciones:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Bibliografía
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to MkDocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-contenidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de Contenidos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-la-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción a la virtualización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tipos-de-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tipos de virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tipos de virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipo-i-baremetal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo I (Baremetal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipo-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipo II
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ventajas-e-inconvenientes-de-la-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ventajas e inconvenientes de la virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ventajas e inconvenientes de la virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-inconvenientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Inconvenientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VirtualBox
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. VirtualBox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-antes-de-empezar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Antes de empezar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-descarga-e-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Descarga e instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-interfaz-del-hipervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Interfaz del hipervisor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3. Interfaz del hipervisor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menu-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menú Archivo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-maquina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menú Máquina:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-el-boton-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. El botón Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ejemplo-de-creacion-de-una-maquina-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ejemplo de creación de una máquina virtual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Ejemplo de creación de una máquina virtual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-creacion-de-la-mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Creación de la MV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-instalacion-del-sistema-operativo-windows-10-en-la-mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Instalación del Sistema Operativo Windows 10 en la MV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-instalacion-de-las-guest-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Instalación de las Guest Additions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Instalación de las Guest Additions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos para la instalación:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-creacion-de-una-carpeta-compartida-host-guest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Creación de una carpeta compartida host-guest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-creacion-de-instantaneas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Creación de instantáneas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-consejos-finales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Consejos finales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-resolucion-de-problemas-tipicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Resolución de problemas típicos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-anexos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Anexos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Anexos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-resumen-de-la-configuracion-de-las-maquinas-virtuales-windows-a-crear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Resumen de la configuración de las máquinas virtuales Windows a crear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-software-de-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Software de virtualización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2. Software de virtualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VMware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-server-hyper-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Server Hyper-V
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oracle-vm-virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle VM VirtualBox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallels-desktop-for-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallels Desktop for Mac
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otras soluciones:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Bibliografía
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sistemas-operativos-en-red-configuracion-del-sistema-de-virtualizacion">Sistemas Operativos en Red - Configuración del sistema de virtualización</h1>
+<p><em>2º CFGM Sistemas Microinformáticos y Redes (SMR)</em></p>
+<hr />
+<h2 id="tabla-de-contenidos">Tabla de Contenidos</h2>
+<ol>
+<li><a href="#1-introducci%C3%B3n-a-la-virtualizaci%C3%B3n">Introducción a la virtualización</a></li>
+<li><a href="#2-tipos-de-virtualizaci%C3%B3n">Tipos de virtualización</a></li>
+<li><a href="#3-ventajas-e-inconvenientes-de-la-virtualizaci%C3%B3n">Ventajas e inconvenientes de la virtualización</a><ul>
+<li><a href="#31-ventajas">3.1. Ventajas</a></li>
+<li><a href="#32-inconvenientes">3.2. Inconvenientes</a></li>
+</ul>
+</li>
+<li><a href="#4-virtualbox">VirtualBox</a><ul>
+<li><a href="#41-antes-de-empezar">4.1. Antes de empezar</a></li>
+<li><a href="#42-descarga-e-instalaci%C3%B3n">4.2. Descarga e instalación</a></li>
+<li><a href="#43-interfaz-del-hipervisor">4.3. Interfaz del hipervisor</a></li>
+<li><a href="#44-el-bot%C3%B3n-configuraci%C3%B3n">4.4. El botón Configuración</a></li>
+</ul>
+</li>
+<li><a href="#5-ejemplo-de-creaci%C3%B3n-de-una-m%C3%A1quina-virtual">Ejemplo de creación de una máquina virtual</a><ul>
+<li><a href="#51-creaci%C3%B3n-de-la-mv">5.1. Creación de la MV</a></li>
+<li><a href="#52-instalaci%C3%B3n-del-sistema-operativo-windows-10-en-la-mv">5.2. Instalación del Sistema Operativo Windows 10 en la MV</a></li>
+<li><a href="#53-instalaci%C3%B3n-de-las-guest-additions">5.3. Instalación de las Guest Additions</a></li>
+<li><a href="#54-creaci%C3%B3n-de-una-carpeta-compartida-host-guest">5.4. Creación de una carpeta compartida host-guest</a></li>
+<li><a href="#55-creaci%C3%B3n-de-instant%C3%A1neas">5.5. Creación de instantáneas</a></li>
+</ul>
+</li>
+<li><a href="#6-consejos-finales">Consejos finales</a></li>
+<li><a href="#7-resoluci%C3%B3n-de-problemas-t%C3%ADpicos">Resolución de problemas típicos</a></li>
+<li><a href="#8-anexos">Anexos</a><ul>
+<li><a href="#81-resumen-de-la-configuraci%C3%B3n-de-las-m%C3%A1quinas-virtuales-windows-a-crear">8.1. Resumen de la configuración de las máquinas virtuales Windows a crear</a></li>
+<li><a href="#82-software-de-virtualizaci%C3%B3n">8.2. Software de virtualización</a></li>
+</ul>
+</li>
+<li><a href="#9-bibliograf%C3%ADa">Bibliografía</a></li>
+</ol>
+<hr />
+<h2 id="1-introduccion-a-la-virtualizacion">1. Introducción a la virtualización</h2>
+<p>De una manera bastante simple, podemos definir la virtualización como un software que permite simular un ordenador dentro de otro ordenador. Este equipo 'simulado' puede ejecutar su sistema operativo sobre el hardware real, aunque dependiendo del tipo de virtualización, la interacción con el hardware puede realizarse de una manera más transparente, o con más capas intermedias.</p>
+<p>De ahora en adelante, utilizaremos la siguiente nomenclatura:</p>
+<ul>
+<li><strong>Hipervisor:</strong> software que aprovecha y gestiona los recursos del sistema real (o anfitrión) para crear equipos simulados (máquinas virtuales).</li>
+<li><strong>Máquina virtual:</strong> equipo virtual (o simulado) completamente funcional que consta de sistema operativo, acceso a red, dispositivos de almacenamiento, etc.</li>
+<li><strong>Equipo anfitrión, real o host:</strong> equipo físico sobre el que se simulan otros equipos.</li>
+<li><strong>Equipo invitado, virtual o guest:</strong> equipo simulado sobre el sistema real.</li>
+</ul>
+<p>Las máquinas virtuales a las que se hará referencia son las llamadas <strong>máquinas virtuales de sistema</strong>, las cuales simulan o virtualizan un sistema completo. El otro gran grupo de máquinas virtuales son las llamadas <strong>de proceso</strong> (middleware), las cuales proporcionan un entorno de ejecución independiente de la plataforma hardware y del sistema operativo, como pueden ser Java o Microsoft .NET, pero que quedan fuera de los objetivos de este curso.</p>
+<hr />
+<h2 id="2-tipos-de-virtualizacion">2. Tipos de virtualización</h2>
+<p>Podemos dividir en dos grandes grupos los esquemas de virtualización de sistema:</p>
+<h3 id="tipo-i-baremetal">Tipo I (Baremetal)</h3>
+<p>El hipervisor se halla incrustado en un sistema operativo muy ligero de manera que los recursos físicos del sistema real son aprovechados en casi su totalidad por los sistemas virtualizados.</p>
+<blockquote>
+<p><strong>Nota de rendimiento:</strong> Según Proxmox, el rendimiento de los recursos hardware que se pierde al virtualizar con su sistema es inferior al 3% del que se obtendría al instalar directamente el sistema virtualizado sobre el hardware físico.</p>
+</blockquote>
+<p><em>Ejemplos:</em> Proxmox, Hyper-V y VMware ESXi.</p>
+<h3 id="tipo-ii">Tipo II</h3>
+<p>El hipervisor es un programa más ejecutándose dentro del sistema operativo instalado (Windows XP, Vista, 7, Ubuntu, openSUSE, Fedora, etc.) sobre la máquina real. Sobre este hipervisor se crean y ejecutan las máquinas virtuales.</p>
+<p><em>Ejemplos:</em> VirtualBox, VMware (Player, Workstation, etc.), QEMU, etc.</p>
+<blockquote>
+<p>[!NOTE]
+En los sistemas empresariales en los que se persigue un alto rendimiento y un elevado nivel de fiabilidad y disponibilidad, se implementan soluciones de <strong>Tipo I</strong>, ya que el objetivo es tener en funcionamiento sistemas servidores sobre una plataforma hardware accesibles y configurables a través de una consola o de la red.</p>
+</blockquote>
+<hr />
+<h2 id="3-ventajas-e-inconvenientes-de-la-virtualizacion">3. Ventajas e inconvenientes de la virtualización</h2>
+<h3 id="31-ventajas">3.1. Ventajas</h3>
+<ul>
+<li><strong>Ejecución simultánea:</strong> Permite ejecutar diferentes sistemas operativos simultáneamente sobre un único hardware.</li>
+<li><strong>Instantáneas (Snapshots):</strong> Permite crear estados definidos de la máquina pudiendo volver a ellos en caso de que alguna modificación haya causado daño en el sistema guest.</li>
+<li><strong>Ahorro de costes:</strong> En entornos de producción con hardware potente, se aprovecha la capacidad del equipo reduciendo servidores físicos dedicados (ej. servidores de correo, aplicaciones y almacenamiento virtualizados en una sola máquina física al 90% de uso).</li>
+<li><strong>Aislamiento y seguridad:</strong> Las aplicaciones ejecutadas en el SO guest se hallan aisladas del SO host. Ante un ataque por virus o malware, el sistema real está a salvo y se puede recuperar la MV desde una instantánea 'sana'.</li>
+<li><strong>Portabilidad y Alta Disponibilidad:</strong> Los sistemas virtualizados pueden ser 'portados' a otro equipo físico de forma sencilla. En entornos de alta disponibilidad se crean clústers de virtualización para migrar MVs ante fallos de hardware.</li>
+</ul>
+<h3 id="32-inconvenientes">3.2. Inconvenientes</h3>
+<ul>
+<li><strong>Complejidad añadida:</strong> Existencia de capas intermedias hasta llegar al hardware.</li>
+<li><strong>Pérdida de prestaciones:</strong> Reducción del rendimiento ocasionada por las capas intermedias y la compartición de recursos hardware (aunque los esquemas <em>baremetal</em> reducen esta pérdida al mínimo).</li>
+</ul>
+<hr />
+<h2 id="4-virtualbox">4. VirtualBox</h2>
+<h3 id="41-antes-de-empezar">4.1. Antes de empezar</h3>
+<p>En clase utilizaremos VirtualBox como herramienta para virtualizar por varios motivos:
+- Necesitamos virtualizar un sistema entero.
+- Es una herramienta potente con todas las funcionalidades necesarias.
+- Multiplataforma (Windows, GNU/Linux, macOS).
+- Herramienta gratuita y válida para entornos educativos.
+- Respaldo importante por parte de Oracle con actualizaciones frecuentes.</p>
+<h3 id="42-descarga-e-instalacion">4.2. Descarga e instalación</h3>
+<ol>
+<li>Acceder a la web oficial: <a href="https://www.virtualbox.org">virtualbox.org</a></li>
+<li>Descargar la versión adecuada según la arquitectura de nuestro equipo (32 o 64 bits).</li>
+<li>Instalar el <strong>Extension Pack</strong> para la integración adecuada de USBs, arranque por red, etc. Existe una única versión del Extension Pack para todas las plataformas (requiere privilegios de administrador).</li>
+</ol>
+<h3 id="43-interfaz-del-hipervisor">4.3. Interfaz del hipervisor</h3>
+<h4 id="menu-archivo">Menú Archivo:</h4>
+<ul>
+<li><code>Preferencias</code>: abre el menú con opciones generales de la aplicación.</li>
+<li><code>Importar servicio virtualizado</code>: permite importar máquinas en formato OVF.</li>
+<li><code>Exportar servicio virtualizado</code>: permite exportar una máquina virtual.</li>
+<li><code>Herramientas -&gt; Administrador de medios virtuales</code>: gestión de discos duros, unidades ópticas, disquetes.</li>
+<li><code>Herramientas -&gt; Administrador de red</code>: creación de redes NAT propias.</li>
+<li><code>Herramientas -&gt; Administrador de perfil cloud</code>: exportación a Oracle Cloud Infrastructure.</li>
+<li><code>Comprobar actualizaciones</code>: verificar nuevas versiones del programa o Extension Pack.</li>
+<li><code>Reiniciar todas las advertencias</code>: vuelve a chequear avisos o errores de configuración.</li>
+</ul>
+<h4 id="menu-maquina">Menú Máquina:</h4>
+<ul>
+<li><code>Nueva...</code>: abre el asistente de creación de una nueva MV.</li>
+<li><code>Añadir...</code>: añade una MV existente desde el disco.</li>
+</ul>
+<h3 id="44-el-boton-configuracion">4.4. El botón Configuración</h3>
+<p>Permite personalizar el hardware virtual de la máquina seleccionada:</p>
+<ul>
+<li><strong>General:</strong> Nombre de la máquina y tipo/versión de SO a instalar.</li>
+<li><strong>Sistema:</strong></li>
+<li><em>Placa base:</em> Asignación de memoria RAM y orden de arranque.</li>
+<li><em>Procesador:</em> Configuración del número de núcleos (CPUs) asignados.</li>
+<li><strong>Almacenamiento:</strong> Creación y gestión de controladores (SATA, IDE, SCSI, SAS), discos duros virtuales y unidades ópticas.</li>
+<li><strong>Red:</strong> Configuración de los adaptadores de red habilitados.</li>
+<li><strong>Carpetas compartidas:</strong> Configuración de carpetas compartidas entre host y guest.</li>
+</ul>
+<hr />
+<h2 id="5-ejemplo-de-creacion-de-una-maquina-virtual">5. Ejemplo de creación de una máquina virtual</h2>
+<h3 id="51-creacion-de-la-mv">5.1. Creación de la MV</h3>
+<ol>
+<li>Pulsar en el botón <strong>'Nueva'</strong>.</li>
+<li>Indicar <strong>Nombre</strong> y <strong>Tipo/Versión</strong> de sistema operativo (se recomienda no rellenar el campo "Imagen ISO" en este paso para evitar una instalación desatendida automática).</li>
+<li>Asignar <strong>Memoria RAM</strong> (mínimo recomendado: 512 MB).</li>
+<li>Crear un <strong>Disco duro virtual</strong>:</li>
+<li>Seleccionar <strong>Reservado dinámicamente</strong> (recomendado): el disco solo ocupará en el host el espacio real utilizado por la MV hasta el límite máximo fijado.</li>
+<li>Finalizar el asistente e insertar la imagen ISO en la unidad óptica virtual desde la sección de <em>Almacenamiento</em>.</li>
+</ol>
+<h3 id="52-instalacion-del-sistema-operativo-windows-10-en-la-mv">5.2. Instalación del Sistema Operativo Windows 10 en la MV</h3>
+<ol>
+<li>Iniciar la máquina virtual con el botón <strong>'Iniciar'</strong>.</li>
+<li>Seleccionar idioma, formato de hora y teclado. Pulsar <strong>'Instalar ahora'</strong>.</li>
+<li>En la clave de producto, seleccionar <strong>"No tengo clave de producto"</strong>.</li>
+<li>Elegir la edición de Windows 10 deseada (ej. Windows 10 Pro) y aceptar la licencia.</li>
+<li>Tipo de instalación: Elegir <strong>"Personalizada: instalar solo Windows (avanzado)"</strong>.</li>
+<li>Selección de disco: Seleccionar el espacio sin asignar y continuar.</li>
+<li>Al finalizar la copia de archivos y reiniciar:</li>
+<li>Configurar región y teclado.</li>
+<li>En la pantalla de inicio de sesión de Microsoft, elegir <strong>"Cuenta sin conexión"</strong> (o "Experiencia limitada").</li>
+<li>Crear el usuario local (ej. <code>usuario</code>) y contraseña.</li>
+<li>Configurar las preguntas de seguridad y opciones de privacidad.</li>
+</ol>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Anotad el usuario y la contraseña</strong> que hayáis asignado al sistema, ya que a lo largo del curso necesitaremos disponer de un usuario administrador local del equipo cliente en caso de problemas con el dominio.</p>
+</blockquote>
+<h3 id="53-instalacion-de-las-guest-additions">5.3. Instalación de las Guest Additions</h3>
+<p>Las <strong>Guest Additions</strong> son un conjunto de controladores y aplicaciones que optimizan el rendimiento y la usabilidad de la MV (resolución adaptable, soporte USB, carpetas compartidas, portapapeles bidireccional).</p>
+<h4 id="pasos-para-la-instalacion">Pasos para la instalación:</h4>
+<ol>
+<li>En el menú superior de la ventana de la MV: <code>Dispositivos</code> → <code>Instalar imagen de CD de Guest Additions...</code>.</li>
+<li>Abrir el <em>Explorador de archivos</em> en Windows guest y acceder a la unidad de CD montada.</li>
+<li>Ejecutar el instalador correspondiente (ej. <code>VBoxWindowsAdditions-amd64.exe</code>).</li>
+<li>Seguir el asistente y <strong>reiniciar la máquina virtual</strong>.</li>
+</ol>
+<h3 id="54-creacion-de-una-carpeta-compartida-host-guest">5.4. Creación de una carpeta compartida host-guest</h3>
+<ol>
+<li>Menú <code>Dispositivos</code> → <code>Carpetas compartidas</code> → <code>Preferencias de carpetas compartidas...</code>.</li>
+<li>Añadir nueva carpeta compartida:</li>
+<li><strong>Ruta de la carpeta:</strong> Seleccionar la carpeta en el equipo anfitrión.</li>
+<li><strong>Nombre de la carpeta:</strong> Identificador (ej. <code>SOR</code>).</li>
+<li>Marcar las casillas <strong>'Automontar'</strong> y <strong>'Hacer permanente'</strong>.</li>
+<li>Acceso desde la MV:</li>
+<li><strong>Opción A:</strong> Reiniciar la MV y comprobar la nueva unidad en <em>Este equipo</em>.</li>
+<li><strong>Opción B (vía Consola CMD como Administrador):</strong>
+     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>net use E: \\vboxsrv\SOR
+</code></pre></div>
+     <em>(donde <code>E:</code> es la letra deseada y <code>SOR</code> el nombre dado a la carpeta).</em></li>
+</ol>
+<h3 id="55-creacion-de-instantaneas">5.5. Creación de instantáneas</h3>
+<p>Permiten guardar el estado de la MV para restaurarlo posteriormente si ocurre algún fallo.</p>
+<ol>
+<li>Con la máquina seleccionada o en marcha, hacer clic en el botón <strong>'Tomar'</strong> (sección Instantáneas).</li>
+<li>Asignar un <strong>Nombre</strong> (ej. <em>Instantánea 1</em>) y <strong>Descripción</strong>.</li>
+<li>Para restaurar: Apagar la MV, ir al administrador de instantáneas, seleccionar la instantánea guardada y hacer clic en <strong>'Restaurar'</strong>.</li>
+</ol>
+<hr />
+<h2 id="6-consejos-finales">6. Consejos finales</h2>
+<ul>
+<li><strong>Instala las Guest Additions</strong> inmediatamente después de instalar el SO.</li>
+<li><strong>Configura la red atentamente:</strong></li>
+<li><code>NAT</code>: Otorga Internet a la MV, pero no permite comunicación con otras MVs ni equipos de la red local.</li>
+<li><code>Adaptador puente (Bridged)</code>: La MV se conecta al switch como un equipo real de la red física.</li>
+<li><code>Red interna</code>: Permite comunicación exclusivamente entre MVs del mismo host configuradas con el mismo nombre de red interna.</li>
+<li><code>Red NAT</code>: Permite crear subredes virtuales entre MVs con salida a Internet.</li>
+<li><code>Solo-anfitrión (Host-Only)</code>: Comunicación exclusiva entre la MV y el equipo anfitrión.</li>
+<li><strong>Haz copias de seguridad mediante Instantáneas</strong> antes de realizar configuraciones delicadas en el SO.</li>
+</ul>
+<hr />
+<h2 id="7-resolucion-de-problemas-tipicos">7. Resolución de problemas típicos</h2>
+<blockquote>
+<p>[!WARNING]
+- <strong>Error al importar un archivo <code>.ova</code> (error de controlador USB):</strong> Deshabilitar el controlador USB en las opciones del servicio virtualizado antes de importar.
+- <strong>Error al intentar instalar desde la ISO:</strong> Comprobar que se ha seleccionado la arquitectura correcta (32 bits vs 64 bits) al crear la MV en VirtualBox.</p>
+</blockquote>
+<hr />
+<h2 id="8-anexos">8. Anexos</h2>
+<h3 id="81-resumen-de-la-configuracion-de-las-maquinas-virtuales-windows-a-crear">8.1. Resumen de la configuración de las máquinas virtuales Windows a crear</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sistema Operativo</th>
+<th style="text-align: center;">RAM</th>
+<th style="text-align: center;">Disco Duro</th>
+<th style="text-align: center;">Red</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Windows Server 2016... 2022</strong></td>
+<td style="text-align: center;">1.5 - 2 GB</td>
+<td style="text-align: center;">25-32 GB (expansión dinámica)</td>
+<td style="text-align: center;">1 tarjeta de red ("Red NAT")</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Windows 10 (64 bits)</strong></td>
+<td style="text-align: center;">2 GB</td>
+<td style="text-align: center;">15 GB (expansión dinámica)</td>
+<td style="text-align: center;">1 tarjeta de red ("Red NAT")</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Windows 10 (32 bits)</strong></td>
+<td style="text-align: center;">1 GB</td>
+<td style="text-align: center;">15 GB (expansión dinámica)</td>
+<td style="text-align: center;">1 tarjeta de red ("Red NAT")</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ubuntu 24.04 Server</strong></td>
+<td style="text-align: center;">1 - 4 GB</td>
+<td style="text-align: center;">25-30 GB (expansión dinámica)</td>
+<td style="text-align: center;">1 tarjeta de red ("Red NAT")</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ubuntu 24.04 Desktop</strong></td>
+<td style="text-align: center;">1 - 4 GB</td>
+<td style="text-align: center;">25-30 GB (expansión dinámica)</td>
+<td style="text-align: center;">1 tarjeta de red ("Red NAT")</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-software-de-virtualizacion">8.2. Software de virtualización</h3>
+<h4 id="vmware">VMware</h4>
+<ul>
+<li><strong>Escritorio:</strong> VMware Workstation (Windows/Linux, comercial), VMware Fusion (macOS Intel), VMware Player (gratuito para uso personal).</li>
+<li><strong>Empresarial (Tipo 1):</strong> VMware ESXi (baremetal), vCenter (gestión centralizada con vMotion, Storage vMotion, DRS y HA).</li>
+</ul>
+<h4 id="windows-server-hyper-v">Windows Server Hyper-V</h4>
+<p>Solución de virtualización de Microsoft integrada en Windows Server y Windows 10/11 Pro. Disponible como rol o como hipervisor independiente (<em>Hyper-V Server</em>).</p>
+<h4 id="oracle-vm-virtualbox">Oracle VM VirtualBox</h4>
+<p>Hipervisor de Tipo 2 de código abierto (GPLv2) con Extension Pack bajo licencia PUEL. Excelente opción multiplataforma para entornos de escritorio y educativos.</p>
+<h4 id="parallels-desktop-for-mac">Parallels Desktop for Mac</h4>
+<p>Optimizado para entornos Apple macOS, permitiendo ejecutar Windows y Linux con alto rendimiento.</p>
+<h4 id="otras-soluciones">Otras soluciones:</h4>
+<ul>
+<li><strong>Windows Virtual PC:</strong> Solución clásica de Microsoft para Windows 7 (virtualización de Windows XP).</li>
+<li><strong>Xen:</strong> Hipervisor baremetal de código abierto que utiliza <em>paravirtualización</em> (penalización de rendimiento reducida al 2-8%).</li>
+<li><strong>OpenVZ:</strong> Virtualización basada en contenedores a nivel de sistema operativo para GNU/Linux.</li>
+</ul>
+<hr />
+<h2 id="9-bibliografia">9. Bibliografía</h2>
+<ul>
+<li><a href="http://somebooks.es/?p=4787">SomeBooks.es - Sistemas Operativos en Red</a></li>
+<li>José Ramón Ruiz Rodríguez (2015). <em>Curso Cefire Windows 2008 Server</em>.</li>
+<li>José Ramón Ruiz Rodríguez (2015). <em>Curso Cefire Windows Server 2012</em>.</li>
+<li><a href="http://es.wikipedia.org/wiki/Sistema_operativo_de_red">Wikipedia - Sistema Operativo de Red</a></li>
+<li>Elaboración propia (2024).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.sections", "navigation.expand", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
