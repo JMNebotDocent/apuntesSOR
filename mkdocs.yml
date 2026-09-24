@@ -1,48 +1,38 @@
-site_name: Sistemas Operativos en Red
-site_description: Apuntes y prácticas de Sistemas Operativos en Red
-site_author: JMNebotDocent
-site_url: https://JMNebotDocent.github.io/apuntesSOR/
+site_name: Apuntes SOR - Virtualización
+site_description: Apuntes de Sistemas Operativos en Red (2º CFGM SMR) - Configuración del sistema de virtualización
+site_author: 2º SMR
 
 theme:
   name: material
   language: es
-  font:
-    text: Roboto
-    code: Roboto Mono
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: indigo
-      accent: indigo
+      accent: blue
       toggle:
         icon: material/brightness-7
         name: Cambiar a modo oscuro
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
-      accent: indigo
+      accent: blue
       toggle:
         icon: material/brightness-4
         name: Cambiar a modo claro
   features:
-    #- navigation.tabs
     - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.code.copy
-    - content.code.annotate # Muy útil para explicar líneas específicas de scripts o configs
     - navigation.sections
-    - navigation.indexes
+    - navigation.expand
+    - content.code.copy
 
 markdown_extensions:
-  - admonition               # Cajas de notas, advertencias y avisos (!!! note / !!! warning)
-  - pymdownx.details          # Permite desplegables ocultos (??? note)
-  - pymdownx.superfences      # Bloques de código avanzados y anidados
-  - pymdownx.highlight:       # Resaltado de sintaxis
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
       anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite     # Resaltar comandos o rutas en línea (`code`)
-  - pymdownx.snippets         # Reutilizar fragmentos de texto o configuraciones
-  - tables                    # Tablas Markdown
-
-nav:
-  - Inicio: index.md
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - attr_list
